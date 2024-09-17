@@ -1,91 +1,64 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "DesiVocal",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "href" : "https://www.desivocal.com"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
+    "primary": "#6f44bf",
+    "light": "#6f44bf",
+    "dark": "#6f44bf"
   },
+  "modeToggle": {
+    "default": "light"
+  },
+  "theme" : "prism",
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "https://www.desivocal.com/contact"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://www.desivocal.com/dashboard"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
-  ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "getting-started"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "API",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        {
+          "group": "Text To Speech",
+          "pages": [
+            "api-reference/endpoint/voices",
+            "api-reference/endpoint/generate",
+            "api-reference/endpoint/generation_info",
+            "api-reference/endpoint/history",
+            "api-reference/endpoint/regenerate_key"
+          ]
+        }
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/desi_vocal",
+    "instagram": "https://www.instagram.com/desivocaldotcom/",
+    "discord": "https://discord.com/invite/nWXREVz2vy",
+    "github": "https://github.com/Stonkr/dv-api-docs"
+  },
+  "api": {
+    "baseUrl": "https://api.desivocal.com/dv/api/v0/tts_api",
+    "playground": {
+      "mode": "show"
+    }
   }
 }

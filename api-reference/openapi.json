@@ -1,195 +1,176 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
+  "openapi": "3.1.0",
+  "info": { "title": "DesiVocal API Documentation", "description": "This is the documentation for the DesiVocal API.", "version": "1.0.0" },
+  "tags": [],
   "paths": {
-    "/plants": {
+    "/history": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "summary": "History",
+        "deprecated": false,
+        "description": "Retrieves the history of TTS generations.",
+        "tags": [],
         "parameters": [
           {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
+            "name": "X_API_KEY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
+                "schema": { "type": "object", "properties": {} }
               }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            },
+            "headers": {}
           }
-        }
-      },
+        },
+        "security": []
+      }
+    },
+    "/generation_info": {
+      "get": {
+        "summary": "Specific Generation Info",
+        "deprecated": false,
+        "description": "Retrieves information about a specific TTS generation.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "generation_id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "generation_id",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "X_API_KEY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/voices": {
+      "get": {
+        "summary": "List Voices",
+        "deprecated": false,
+        "description": "Retrieves a list of available voices.",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/regenerate_key": {
+      "get": {
+        "summary": "Regenerate Keys",
+        "deprecated": false,
+        "description": "Regenerates API keys.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "X_API_KEY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/generate": {
       "post": {
-        "description": "Creates a new plant in the store",
+        "summary": "Generate TTS Hindi",
+        "deprecated": false,
+        "description": "Generates Text-to-Speech audio.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "X_API_KEY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": { "type": "string" }
+          }
+        ],
         "requestBody": {
-          "description": "Plant to add to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string" },
+                  "voice_id": { "type": "string" }
+                },
+                "required": ["text", "voice_id"]
+              },
+              "example": {
+                "text": "भेजना चाहते हैं हिंदी में मैसेज लेकिन नहीं आती टाइपिंग? इन आसान Tips से मोबाइल से भेजें हिंदी में टेक्स्ट मैसेज",
+                "voice_id": "f27d74e5-ea71-4697-be3e-f04bbd80c1a8"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
+                "schema": { "type": "object", "properties": {} }
               }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            },
+            "headers": {}
           }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
+        },
+        "security": []
       }
     }
   },
-  "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
-    }
-  }
+  "components": { "schemas": {}, "securitySchemes": {} },
+  "servers": []
 }
