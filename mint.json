@@ -56,7 +56,7 @@
     "github": "https://github.com/Stonkr/dv-api-docs"
   },
   "api": {
-    "baseUrl": "https://api.desivocal.com/dv/api/v0/tts_api",
+    "baseUrl": "https://prod-api2.desivocal.com/dv/api/v0/tts_api",
     "playground": {
       "mode": "show"
     }
