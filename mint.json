@@ -19,7 +19,7 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "https://www.desivocal.com/contact"
+      "url": "mailto:cs@desivocal.com"
     }
   ],
   "topbarCtaButton": {
